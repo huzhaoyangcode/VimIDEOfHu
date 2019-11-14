@@ -1,16 +1,13 @@
-let mapleader = ","
+let mapleader = ","           " This is my mapleader
 set nocompatible              " be iMproved, required
-filetype off                  " required
+filetype off                  " Vundle required
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-" Plugin 'Valloric/YouCompleteMe'
 Plugin 'Lokaltog/vim-powerline'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'derekwyatt/vim-fswitch'
@@ -27,7 +24,7 @@ Plugin 'Lokaltog/vim-easymotion'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
-filetype plugin indent on    " required
+filetype plugin indent on    " Vundle required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 "
@@ -40,41 +37,14 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-" YCM 补全菜单配色
-" 设置python
-let g:ycm_server_python_interpreter = '/usr/bin/python3'
-" ycm文件位置
-"let g:ycm_global_ycm_extra_conf='~/.ycm_extra_conf.py'
-" 菜单
-highlight Pmenu ctermfg=2 ctermbg=3 guifg=#005f87 guibg=#EEE8D5
-" 选中项
-highlight PmenuSel ctermfg=2 ctermbg=3 guifg=#AFD700 guibg=#106900
-" 补全功能在注释中同样有效
-let g:ycm_complete_in_comments=1
-" 允许 vim 加载 .ycm_extra_conf.py 文件，不再提示,0不提示，1提示
-let g:ycm_confirm_extra_conf=1
-" 开启 YCM 标签补全引擎
-let g:ycm_collect_identifiers_from_tags_files=1
-" YCM 集成 OmniCppComplete 补全引擎，设置其快捷键
-" ycm默认使用clangd 当为0时使用libclang 其中clanged是实验版本。
-let g:ycm_use_clangd=1
-inoremap <leader>, <C-x><C-o>
-" 补全内容不以分割子窗口形式出现，只显示补全列表
-set completeopt-=preview
-" 从第一个键入字符就开始罗列匹配项
-let g:ycm_min_num_of_chars_for_completion=1
-" 禁止缓存匹配项，每次都重新生成匹配项
-let g:ycm_cache_omnifunc=1
-" 语法关键字补全			
-let g:ycm_seed_identifiers_with_syntax=1
 " 开启实时搜索功能
 set incsearch
 " 搜索时大小写不敏感
 set ignorecase
-" 关闭兼容模式
+" 关闭兼容模式,即不和vim兼容，使用vim的内部命令
 set nocompatible
-" 总是显示状态栏
-set laststatus=2
+" 总是显示状态栏,2代表把状态行放在下面的倒数第二行，0代表移除状态行
+set laststatus=0
 " 显示光标当前位置
 set ruler
 " 禁止折行
@@ -87,7 +57,7 @@ set number
 " 高亮显示搜索结果
 set hlsearch
 " 设置状态栏主题风格
-let g:Powerline_colorscheme='solarized256'
+" let g:Powerline_colorscheme='solarized256'
 " 开启语法高亮功能
 syntax enable
 " 允许用指定语法高亮配色方案替换默认方案
@@ -117,10 +87,6 @@ nnoremap <Leader>tt :TagbarToggle<CR>
 let tagbar_width=32 
 " tagbar 子窗口中不显示冗余帮助信息 
 let g:tagbar_compact=1
-" 函数定义跳转或跳到include包含的文件
-nnoremap <leader>jc :YcmCompleter GoToDeclaration<CR>
-" 只能是 #include 或已打开的文件
-nnoremap <leader>jd :YcmCompleter GoToDefinition<CR>
 " 使用 ctrlsf.vim 插件在工程内全局查找光标所在关键字，设置快捷键。快捷键速记法：search in project
 " 此插件基于ack-grep, 不使用光标时候是: CtrlSF func
 nnoremap <Leader>sp :CtrlSF<CR> 
