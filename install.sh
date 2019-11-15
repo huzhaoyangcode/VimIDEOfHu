@@ -57,4 +57,9 @@ else
     exit 2
 fi
 
+#Install some dependence of plugin TODO:different platform support
+echo "[INFO] Install Dependence..."
+echo "[INFO] Install list:ctags ack-grep xclip"
+sudo apt-get install ctags ack-grep xclip
+
 echo "[INFO] Install finished!"
