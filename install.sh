@@ -4,12 +4,18 @@
 PLUGIN_INSTALL_DIR=$HOME/.vim
 CONFIG_INSTALL_DIR=$HOME/.vimrc
 SCRIPT_DIR=`pwd`
+FILE_BACKUP_NAME_RECORD_FILE=$SCRIPT_DIR/.fileBackupNameRecord
 CURRENT_TIME=`date "+%Y%m%d-%H:%M:%S"`
+
+#Clear the backup name record file
+echo -n > $FILE_BACKUP_NAME_RECORD_FILE
+echo "[INFO] Have cleared the $FILE_BACKUP_NAME_RECORD_FILE for record backup filename."
 
 #Install .vimrc
 ## back up .vimrc exist
 if [ -f "$CONFIG_INSTALL_DIR" ]; then
 	mv $CONFIG_INSTALL_DIR $CONFIG_INSTALL_DIR"_bak_"$CURRENT_TIME
+	echo "$CONFIG_INSTALL_DIR"_bak_"$CURRENT_TIME" >> $FILE_BACKUP_NAME_RECORD_FILE
 	echo "[INFO] Have backuped the $CONFIG_INSTALL_DIR $CONFIG_INSTALL_DIR"_bak_"$CURRENT_TIME"
 fi
 ## install .vimrc to ~
@@ -25,6 +31,7 @@ fi
 ## back up .vim exist
 if [ -d "$PLUGIN_INSTALL_DIR" ]; then
 	mv $PLUGIN_INSTALL_DIR $PLUGIN_INSTALL_DIR"_bak_"$CURRENT_TIME
+	echo "$PLUGIN_INSTALL_DIR"_bak_"$CURRENT_TIME" >> $FILE_BACKUP_NAME_RECORD_FILE
 	echo "[INFO] Have backuped the $PLUGIN_INSTALL_DIR to $PLUGIN_INSTALL_DIR"_bak_"$CURRENT_TIME"
 fi
 ## install .vim to ~
