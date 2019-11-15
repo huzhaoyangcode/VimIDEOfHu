@@ -3,13 +3,27 @@
 #define path and time
 PLUGIN_INSTALL_DIR=$HOME/.vim
 CONFIG_INSTALL_DIR=$HOME/.vimrc
+IDE_INSTRUCTION_FILE=$HOME/.VimIDEUsage.md
 SCRIPT_DIR=`pwd`
 FILE_BACKUP_NAME_RECORD_FILE=$SCRIPT_DIR/.fileBackupNameRecord
 CURRENT_TIME=`date "+%Y%m%d-%H:%M:%S"`
 
 #Clear the backup name record file
+if [ -f "$FILE_BACKUP_NAME_RECORD_FILE" ]; then
+	echo "[ERROR] The  ./.VimIDEUsage.md has existed!! You have installed the IDE! Please exec uninstall.sh!"
+    exit -1
+fi
+
 echo -n > $FILE_BACKUP_NAME_RECORD_FILE
 echo "[INFO] Have cleared the $FILE_BACKUP_NAME_RECORD_FILE for record backup filename."
+
+## install .VimIDEUsage.md to ~
+if [ -f "$SCRIPT_DIR/.VimIDEUsage.md" ]; then
+    ln -s $SCRIPT_DIR/.VimIDEUsage.md $IDE_INSTRUCTION_FILE
+    echo "[INFO] Install $SCRIPT_DIR/.VimIDEUsage.md to $IDE_INSTRUCTION_FILE"
+else
+    echo "[ERROR] No $SCRIPT_DIR/.VimIDEUsage.md need be Installed !!"
+fi
 
 #Install .vimrc
 ## back up .vimrc exist

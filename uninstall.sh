@@ -3,6 +3,7 @@
 #define path
 PLUGIN_INSTALL_DIR=$HOME/.vim
 CONFIG_INSTALL_DIR=$HOME/.vimrc
+IDE_INSTRUCTION_FILE=$HOME/.VimIDEUsage.md
 SCRIPT_DIR=`pwd`
 FILE_BACKUP_NAME_RECORD_FILE=$SCRIPT_DIR/.fileBackupNameRecord
 COFIG_FILE_LINES=0
@@ -17,6 +18,14 @@ echo ""
 
 # delete .vim and .vimrc recover all backupfiles
 if [ $ANSWER = 'Y' -o  $ANSWER = 'y' ]; then
+    #delete .VimIDEUsage.md
+    if [ -f "$IDE_INSTRUCTION_FILE" ]; then
+        rm $IDE_INSTRUCTION_FILE
+        echo "[INFO] Have deleted the $IDE_INSTRUCTION_FILE"
+    else
+        echo "[WARNING] Have no $IDE_INSTRUCTION_FILE"
+    fi
+
    #delete .vim
     if [ -d "$PLUGIN_INSTALL_DIR" ]; then
         rm -r $PLUGIN_INSTALL_DIR

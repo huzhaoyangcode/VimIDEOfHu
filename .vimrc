@@ -95,6 +95,7 @@ nnoremap <Leader>sp :CtrlSF<CR>
 "<leader>cu 取消注释
 "设置查看本文件的快捷键
 nnorema <Leader>ii :e ~/.vimrc<CR>
+nnorema <Leader>is :e ~/.VimIDEUsage.md<CR>
 
 "代码模板补全
 let g:UltiSnipsSnippetDirectories=["mysnippets"]
