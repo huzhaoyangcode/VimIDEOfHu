@@ -118,6 +118,10 @@ nnoremap <Leader>te :cs find e <C-R>=expand("<cword>")<CR><CR>
 nnoremap <Leader>tf :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nnoremap <Leader>ti :cs find i <C-R>=expand("<cfile>")<CR><CR>
 nnoremap <Leader>td :cs find d <C-R>=expand("<cword>")<CR><CR>"
+" 设置cscope默认不直接打开搜索结果窗口，打开的窗口有颜色，设置打开窗口的快捷键，和关闭窗口的快捷键
+set cscopequickfix=s-,c-,d-,i-,t-,e-
+nnoremap <Leader>5 :botright copen<CR>
+nnoremap <Leader>6 :ccl<CR>
 "
 ""代码模板补全
 let g:UltiSnipsSnippetDirectories=["mysnippets"]
