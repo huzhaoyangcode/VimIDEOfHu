@@ -110,18 +110,22 @@ nnorema <Leader>is :e ~/.VimIDEUsage.md<CR>
 
 " 基于cscope的跳转
 nnoremap <leader>z3 <ESC>:call AddCscope()<CR>
-nnoremap <Leader>ts :cs find s <C-R>=expand("<cword>")<CR><CR>
-nnoremap <Leader>tg :cs find g <C-R>=expand("<cword>")<CR><CR>
-nnoremap <Leader>tc :cs find c <C-R>=expand("<cword>")<CR><CR>
-nnoremap <Leader>tw :cs find t <C-R>=expand("<cword>")<CR><CR>
-nnoremap <Leader>te :cs find e <C-R>=expand("<cword>")<CR><CR>
-nnoremap <Leader>tf :cs find f <C-R>=expand("<cfile>")<CR><CR>
-nnoremap <Leader>ti :cs find i <C-R>=expand("<cfile>")<CR><CR>
-nnoremap <Leader>td :cs find d <C-R>=expand("<cword>")<CR><CR>"
+" jump to definition
+nnoremap <Leader>jd :cs find g <C-R>=expand("<cword>")<CR><CR>
+" jump to file
+nnoremap <Leader>jf :cs find f <C-R>=expand("<cfile>")<CR><CR>
+" find text
+nnoremap <Leader>ft :cs find t <C-R>=expand("<cword>")<CR><CR>
+" find symbol
+nnoremap <Leader>fs :cs find s <C-R>=expand("<cword>")<CR><CR>
+"nnoremap <Leader>tc :cs find c <C-R>=expand("<cword>")<CR><CR>
+"nnoremap <Leader>te :cs find e <C-R>=expand("<cword>")<CR><CR>
+"nnoremap <Leader>ti :cs find i <C-R>=expand("<cfile>")<CR><CR>
+"nnoremap <Leader>td :cs find d <C-R>=expand("<cword>")<CR><CR>"
 " 设置cscope默认不直接打开搜索结果窗口，打开的窗口有颜色，设置打开窗口的快捷键，和关闭窗口的快捷键
 set cscopequickfix=s-,c-,d-,i-,t-,e-
-nnoremap <Leader>5 :botright copen<CR>
-nnoremap <Leader>6 :ccl<CR>
+nnoremap <Leader>o :botright copen<CR>
+nnoremap <Leader>co :ccl<CR>
 "
 ""代码模板补全
 let g:UltiSnipsSnippetDirectories=["mysnippets"]
@@ -140,8 +144,8 @@ source $VIMRUNTIME/ftplugin/man.vim
 " 定义:Man命令查看各类man信息的快捷键
 nmap <Leader>man :Man 3 <cword><CR>
 
-" 使用 NERDTree 插件查看工程文件。设置快捷键，速记：file list
-nmap <Leader>fl :NERDTreeToggle<CR>
+" 使用 NERDTree 插件查看工程文件。设置快捷键Ctrl+e
+nmap <C-e> :NERDTreeToggle<CR>
 " 设置NERDTree子窗口宽度
 let NERDTreeWinSize=32
 " 设置NERDTree子窗口位置
