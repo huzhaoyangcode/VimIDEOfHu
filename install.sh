@@ -4,6 +4,7 @@
 PLUGIN_INSTALL_DIR=$HOME/.vim
 CONFIG_INSTALL_DIR=$HOME/.vimrc
 IDE_INSTRUCTION_FILE=$HOME/.VimIDEUsage.md
+IDE_CSCOPE_DATABASE_CREATE_SCRIPT_FILE=$HOME/cscopemake.sh
 SCRIPT_DIR=`pwd`
 FILE_BACKUP_NAME_RECORD_FILE=$SCRIPT_DIR/.fileBackupNameRecord
 CURRENT_TIME=`date "+%Y%m%d-%H:%M:%S"`
@@ -23,6 +24,21 @@ if [ -f "$SCRIPT_DIR/.VimIDEUsage.md" ]; then
     echo "[INFO] Install $SCRIPT_DIR/.VimIDEUsage.md to $IDE_INSTRUCTION_FILE"
 else
     echo "[ERROR] No $SCRIPT_DIR/.VimIDEUsage.md need be Installed !!"
+fi
+
+## install cscopemake.sh to ~
+## back up cscopemake.sh exist
+if [ -f "$IDE_CSCOPE_DATABASE_CREATE_SCRIPT_FILE" ]; then
+	mv $IDE_CSCOPE_DATABASE_CREATE_SCRIPT_FILE $IDE_CSCOPE_DATABASE_CREATE_SCRIPT_FILE"_bak_"$CURRENT_TIME
+	echo "$IDE_CSCOPE_DATABASE_CREATE_SCRIPT_FILE"_bak_"$CURRENT_TIME" >> $FILE_BACKUP_NAME_RECORD_FILE
+	echo "[INFO] Have backuped the $IDE_CSCOPE_DATABASE_CREATE_SCRIPT_FILE $IDE_CSCOPE_DATABASE_CREATE_SCRIPT_FILE"_bak_"$CURRENT_TIME"
+fi
+
+if [ -f "$SCRIPT_DIR/cscopemake.sh" ]; then
+    ln -s $SCRIPT_DIR/cscopemake.sh $IDE_CSCOPE_DATABASE_CREATE_SCRIPT_FILE
+    echo "[INFO] Install $SCRIPT_DIR/.cscopemake.sh to $IDE_CSCOPE_DATABASE_CREATE_SCRIPT_FILE"
+else
+    echo "[ERROR] No $SCRIPT_DIR/.cscopemake.sh need be Installed !!"
 fi
 
 #Install .vimrc
@@ -59,7 +75,7 @@ fi
 
 #Install some dependence of plugin TODO:different platform support
 echo "[INFO] Install Dependence..."
-echo "[INFO] Install list:ctags ack-grep xclip"
-sudo apt-get install ctags ack-grep xclip
+echo "[INFO] Install list:ctags ack-grep xclip cscope"
+sudo apt-get install ctags ack-grep xclip cscope
 
 echo "[INFO] Install finished!"

@@ -37,6 +37,17 @@ filetype plugin indent on    " Vundle required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
+" function that create and add cscope database for current project
+function! AddCscope()
+    call inputsave()
+    let name = input('Enter name: ')
+    call inputrestore()
+    let wcd = getcwd()
+    execute "silent !sh ~/cscopemake.sh ".wcd." ".name
+    execute "cs add ~/cscope/".name."/cscope.out"
+    cs reset
+endfunction
+
 " 开启实时搜索功能
 set incsearch
 " 搜索时大小写不敏感
@@ -97,7 +108,18 @@ nnoremap <Leader>sp :CtrlSF<CR>
 nnorema <Leader>ii :e ~/.vimrc<CR>
 nnorema <Leader>is :e ~/.VimIDEUsage.md<CR>
 
-"代码模板补全
+" 基于cscope的跳转
+nnoremap <leader>z3 <ESC>:call AddCscope()<CR>
+nnoremap <Leader>ts :cs find s <C-R>=expand("<cword>")<CR><CR>
+nnoremap <Leader>tg :cs find g <C-R>=expand("<cword>")<CR><CR>
+nnoremap <Leader>tc :cs find c <C-R>=expand("<cword>")<CR><CR>
+nnoremap <Leader>tw :cs find t <C-R>=expand("<cword>")<CR><CR>
+nnoremap <Leader>te :cs find e <C-R>=expand("<cword>")<CR><CR>
+nnoremap <Leader>tf :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nnoremap <Leader>ti :cs find i <C-R>=expand("<cfile>")<CR><CR>
+nnoremap <Leader>td :cs find d <C-R>=expand("<cword>")<CR><CR>"
+"
+""代码模板补全
 let g:UltiSnipsSnippetDirectories=["mysnippets"]
 let g:UltiSnipsExpandTrigger="<leader><tab>"
 let g:UltiSnipsJumpForwardTrigger="<leader><tab>"

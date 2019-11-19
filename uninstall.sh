@@ -4,6 +4,7 @@
 PLUGIN_INSTALL_DIR=$HOME/.vim
 CONFIG_INSTALL_DIR=$HOME/.vimrc
 IDE_INSTRUCTION_FILE=$HOME/.VimIDEUsage.md
+IDE_CSCOPE_DATABASE_CREATE_SCRIPT_FILE=$HOME/cscopemake.sh
 SCRIPT_DIR=`pwd`
 FILE_BACKUP_NAME_RECORD_FILE=$SCRIPT_DIR/.fileBackupNameRecord
 COFIG_FILE_LINES=0
@@ -18,6 +19,14 @@ echo ""
 
 # delete .vim and .vimrc recover all backupfiles
 if [ $ANSWER = 'Y' -o  $ANSWER = 'y' ]; then
+    #delete cscopemake.sh
+    if [ -f "$IDE_CSCOPE_DATABASE_CREATE_SCRIPT_FILE" ]; then
+        rm $IDE_CSCOPE_DATABASE_CREATE_SCRIPT_FILE
+        echo "[INFO] Have deleted the $IDE_CSCOPE_DATABASE_CREATE_SCRIPT_FILE"
+    else
+        echo "[WARNING] Have no $IDE_CSCOPE_DATABASE_CREATE_SCRIPT_FILE"
+    fi
+
     #delete .VimIDEUsage.md
     if [ -f "$IDE_INSTRUCTION_FILE" ]; then
         rm $IDE_INSTRUCTION_FILE
@@ -52,8 +61,11 @@ if [ $ANSWER = 'Y' -o  $ANSWER = 'y' ]; then
         elif [[ "${line}" == *vim* ]]; then
             mv ${line} $PLUGIN_INSTALL_DIR
             echo "[INFO] mv ${line} $PLUGIN_INSTALL_DIR"
+        elif [[ "${line}" == *cscopemake* ]]; then
+            mv ${line} $IDE_CSCOPE_DATABASE_CREATE_SCRIPT_FILE
+            echo "[INFO] mv ${line} $IDE_CSCOPE_DATABASE_CREATE_SCRIPT_FILE"
         else
-            echo "[WARNING] This line have no .vim or .vimrc back up name."
+            echo "[WARNING] This line have no .vim or .vimrc or cscopemake.sh back up name."
         fi
     done < $FILE_BACKUP_NAME_RECORD_FILE
 
