@@ -91,21 +91,27 @@ nmap <silent> <Leader>sw :FSHere<cr>
 "vim-signature 快捷键如下：
 " m+alpha建立书签。
 " `+alpha跳到对应书签。
-" 设置 tagbar 子窗口的位置出现在主编辑区的左边 
-let tagbar_left=0 
+" 设置 tagbar 子窗口的位置出现在主编辑区的左边
+let tagbar_left=0
 " 设置显示／隐藏标签列表子窗口的快捷键。速记：identifier list by tag
-nnoremap <Leader>tt :TagbarToggle<CR> 
-" 设置标签子窗口的宽度 
-let tagbar_width=32 
-" tagbar 子窗口中不显示冗余帮助信息 
+nnoremap <Leader>tt :TagbarToggle<CR>
+" 设置标签子窗口的宽度
+let tagbar_width=32
+" tagbar 子窗口中不显示冗余帮助信息
 let g:tagbar_compact=1
 " 使用 ctrlsf.vim 插件在工程内全局查找光标所在关键字，设置快捷键。快捷键速记法：search in project
 " 此插件基于ack-grep, 不使用光标时候是: CtrlSF func
-nnoremap <Leader>sp :CtrlSF<CR> 
-"自动注释插件快捷键
-"<leader>cc 注释
-"<leader>cu 取消注释
-"设置查看本文件的快捷键
+nnoremap <Leader>sp :CtrlSF<CR>
+
+" nerd-commenter自动注释插件快捷键说明
+",ca 在可选的注释方式之间切换/C++ 的块注释/* */和行注释//
+",cc 注释当前行
+",c<space> 切换注释/非注释状态
+",cs 以”性感”的方式注释
+",cA 在当前行尾添加注释符，并进入Insert模式
+",cu 取消注释
+",c$ 从光标开始到行尾注释，这个要说说因为c$也是从光标到行尾的快捷键，这个按过逗号（，）要快一点按c$
+"
 nnorema <Leader>ii :e ~/.vimrc<CR>
 nnorema <Leader>is :e ~/.VimIDEUsage.md<CR>
 
