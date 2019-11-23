@@ -21,6 +21,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'fholgado/minibufexpl.vim'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'mbbill/undotree'
+Plugin 'tpope/vim-surround'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -165,6 +166,18 @@ map <Leader>bp :MBEbp<cr>
 
 " undotree 快捷键
 nnoremap <Leader>u :UndotreeToggle<CR>
+
+" vim-surround 快捷键
+vmap " S"
+vmap ' S'
+vmap ` S`
+vmap [ S[
+vmap ( S(
+vmap { S{
+vmap } S}
+vmap ] S]
+vmap ) S)
+vmap > S>
 
 "复制和粘贴到外面，需要下载sudo apt-get install xclip
 vmap <Leader><Leader>y :!xclip -f -sel clip<CR>
