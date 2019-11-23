@@ -5,3 +5,4 @@
 ./uninstall.sh
 
 # Function Of This Configure
+please refer to ./.VimIDEUsage.md.

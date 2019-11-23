@@ -11,7 +11,7 @@ CURRENT_TIME=`date "+%Y%m%d-%H:%M:%S"`
 
 #Clear the backup name record file
 if [ -f "$FILE_BACKUP_NAME_RECORD_FILE" ]; then
-	echo "[ERROR] The  ./.VimIDEUsage.md has existed!! You have installed the IDE! Please exec uninstall.sh!"
+	echo "[ERROR] The  $FILE_BACKUP_NAME_RECORD_FILE has existed!! You have installed the IDE! Please exec uninstall.sh!"
     exit -1
 fi
 
@@ -66,11 +66,25 @@ if [ -d "$PLUGIN_INSTALL_DIR" ]; then
 fi
 ## install .vim to ~
 if [ -d "$SCRIPT_DIR/.vim" ]; then
+    echo "[INFO] Plugin directory .vim exist, now use it."
     ln -s $SCRIPT_DIR/.vim $PLUGIN_INSTALL_DIR
     echo "[INFO] Install $SCRIPT_DIR/.vim to $PLUGIN_INSTALL_DIR"
 else
-    echo "[ERROR] No $SCRIPT_DIR/.vim need be Installed !!"
-    exit 2
+    mkdir -p $SCRIPT_DIR/.vim
+    ln -s $SCRIPT_DIR/.vim $PLUGIN_INSTALL_DIR
+    read -n 1 -p "[QUERY] No ./.vim pulgin directory exist ! Download plugin now [Y/N]?" ANSWER
+    if [ $ANSWER = 'Y' -o  $ANSWER = 'y' ]; then
+        echo "[INFO] Install Vundle plugin ...!"
+        git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+        echo "[INFO] Install Vundle finished!"
+        echo "[INFO] Install the other plugins...!"
+        vim +PluginInstall +qall
+        echo "[INFO] All plugins have be installed !"
+    else
+        echo "[INFO] Just created $SCRIPT_DIR/.vim and link it to $PLUGIN_INSTALL_DIR !"
+        echo "[INFO] You need download .vim exist to $SCRIPT_DIR/, then the vim IDE can run correctly !"
+        exit 1
+    fi
 fi
 
 #Install some dependence of plugin TODO:different platform support

@@ -11,9 +11,9 @@ COFIG_FILE_LINES=0
 
 # Interaction for sure to detele files
 if [ -f "$FILE_BACKUP_NAME_RECORD_FILE" ]; then
-    read -n 1 -p "You have installed your vim IDE. Are you sure to delete the ~/.vim and the ~/.vimrc [Y/N]?" ANSWER
+    read -n 1 -p "[QUERY] You have installed your vim IDE. Are you sure to delete the ~/.vim and the ~/.vimrc [Y/N]?" ANSWER
 else
-    read -n 1 -p "You have !!!no!!! installed your vim IDE. Are you sure to delete the ~/.vim and the ~/.vimrc [Y/N]?" ANSWER
+    read -n 1 -p "[QUERY] You have !!!no!!! installed your vim IDE. Are you sure to delete the ~/.vim and the ~/.vimrc [Y/N]?" ANSWER
 fi
 echo ""
 
